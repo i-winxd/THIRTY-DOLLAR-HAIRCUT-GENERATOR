@@ -75,14 +75,15 @@ command prompt.
 3. Run the .py file using python 3.10 (using open with).
 
 ## How to use this program
-1. Click on the midi file when prompted.
+1. Click on the midi file you want to import when prompted. If you don't, the program will stop and shut down.
 2. Answer the prompts the program gives you.
 
 * **FORCE STOP**: If you say "y", this program will insert an 🇽 before every note (excluding times where >=2 notes play at the same time). In other words, it prevents unwanted sustaining. Remember the last time you held that right pedal down playing the piano? This prevents it, but increases the note count.
 * **BPM MULTIPLIER**: You should at least say ``4``, or ``8`` if your song is really fast. Basically, this multiplies the bpm by the number you say. Whatever you say should be a power of 2. Because GDcolon's website is limited, this program automatically quantisizes notes to the nearest beat; the higher the **BPM MULT**, the less quantisizing is done.
 * **BPM_DIV (type 0.5 if you want...)**: Sometimes, this program generates a chart that has a tempo way too high (this is VERY different from BPM multiplier). Type 0.5 if you want the exported chart to have a tempo half of it would be, or 2.0 if you want it double. Think of it like youtube's playback slider - this ONLY affects the tempo that shows up when you import your (moai emoji) file into GDColon's website.
 
-3. Click on the corresponding ``.txt`` file you created (the ``.txt`` file is the file that lets you know what instruments you want each midi channel mapped to... scroll up to see where I explained that).
+3. Click on the corresponding ``.txt`` file you created (the ``.txt`` file is the file that lets you know what instruments you want each midi channel mapped to... scroll up to see where I explained that). If you don't and just decide to close the filer opener, I'll map channel 1 to ``noteblock_banjo`` and channel 2 to ``mariopaint_car``.
+4. This program will close afterwards and you should see your new .(moai emoji) file in the same directory as the .py or exe file. The file will always be named based off your midi file you opened.
 
 ## NOTES
 * This program limits file length to 850 different notes. Any value above that may crash the site on your end.
