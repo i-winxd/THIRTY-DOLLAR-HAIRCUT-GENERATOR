@@ -92,3 +92,4 @@ Run ``main.py``. That is the main file. Don't run the other ``.py`` file, as it 
 ## NOTES
 * You can modify my hard coded stuff if you want.
 * I wrote this at 2 in the morning. If there is anything confusing, let me know VIA my twitter DMs.
+* If your MIDI isn't tailored for this site it will likely sound terrible (note because the timing is wrong, because the midi was likely not meant for that).
