@@ -71,7 +71,7 @@ store in your face to get you to install **the latest version of python
 (version 3.10). Don't use version 3.9 (actually, don't, because type annotation
 stuff)
 2. Install easygui VIA pip. Basically type ``pip install easygui`` in your
-command prompt.
+command prompt. Also do the same thing with mido. Type ``pip install mido`` in your command prompt.
 3. Run the .py file using python 3.10 (using open with).
 
 ## How to use this program
