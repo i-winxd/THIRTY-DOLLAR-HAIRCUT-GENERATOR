@@ -17,7 +17,7 @@ from fractions import Fraction
 MAX_DENOM_POWER = 7  # useless var
 MAX_DENOM = 2 ** MAX_DENOM_POWER  # useless var
 FORCE_STOP = False
-SONG_LENGTH = 850
+SONG_LENGTH_R = 850
 PROMPT = True
 
 # well scrap that, predefine our BPM mult
@@ -62,10 +62,12 @@ def main(midi_path: str):
                   ' Make sure you know what you are doing. Unless you are dealing with a song with'
                   'a swing tempo, but even then, I cannot guarantee anything.')
         bpm_div = float(input('Type 0.5 if you want the song to play half as fast, 1 for normal, or 2 for fast'))
+        song_length = int(input('Maximum beats in this song? I suggest 850. This number is div\'d by bpm mult'))
     else:
         f_stop = FORCE_STOP
         bpm_mult = BPM_MULTI
         bpm_div = 1
+        song_length = SONG_LENGTH_R
 
     spb = md.obtain_spb(midi_path)
     bpm = 60 / spb
@@ -77,7 +79,7 @@ def main(midi_path: str):
     highest_midi_channel = max(x[3] for x in midi_data_1)
     print(highest_midi_channel)
     final_bpm = round(bpm * BPM_MULTI * bpm_div)
-    file_str = generate_file(midi_data_1, final_bpm, f_stop)
+    file_str = generate_file(midi_data_1, final_bpm, f_stop, song_length)
 
     ei = midi_path.rfind('\\')
     if ei != -1:
@@ -171,7 +173,7 @@ MIDI_PERCS_2 = [
 ]
 
 
-def generate_file(midi_data: list, final_bpm: int, f_stop: bool = False) -> str:
+def generate_file(midi_data: list, final_bpm: int, f_stop: bool = False, song_length: int = 850) -> str:
     """Actually generate the final string.
     :param f_stop:
     :param midi_data:
@@ -191,7 +193,7 @@ def generate_file(midi_data: list, final_bpm: int, f_stop: bool = False) -> str:
         file_string = read_file(inst_text_dir)
     sequence_so_far = [f'!speed@{final_bpm * 2}']
     # prev_note_timing = -1
-    for i in range(0, SONG_LENGTH):
+    for i in range(0, song_length):
         acceptable_notes = [x for x in midi_data if x[2] == i]
         # formatted_acceptable_notes = [f'{channel_to_sample(x[3])}{generate_pitch_str(x[1] - 64)}'
         #                              for x in acceptable_notes]
@@ -200,7 +202,8 @@ def generate_file(midi_data: list, final_bpm: int, f_stop: bool = False) -> str:
             if curr_note[3] != 9:
                 processed_str = f'{channel_to_sample(curr_note[3], file_string)[0]}' \
                                 f'{generate_pitch_str(channel_to_sample(curr_note[3], file_string)[1] + curr_note[1] - 64 + TRANSPOSE)}'
-                formatted_acceptable_notes.append(processed_str)
+                if channel_to_sample(curr_note[3], file_string)[0] != 'nothing':
+                    formatted_acceptable_notes.append(processed_str)
             else:
                 try:
                     processed_str = MIDI_PERCS[curr_note[1]]
