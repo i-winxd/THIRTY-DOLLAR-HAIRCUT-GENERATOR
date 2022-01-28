@@ -27,6 +27,8 @@ Definitions:
 * inst root note: the pitch of the sample when you right click it on the website. For example, ``noteblock_harp``'s root note is ``F#5``. And you must type it like that, exactly how it appears in FL Studio. ``C5`` is the middle C. We accept stuff like ``C#5, Db5, Ab4, G#4``, etc. The number at the end denotes the octave. We recommend you have perfect pitch to make this easy for you. If you don't have perfect pitch, consider searching up an online piano so you can compare pitches.
 * semicolon: the character that splits the inst name and the inst root note.
 
+If your inst name is ``nothing`` for a channel then that channel will be skipped.
+
 ### CREATING YOUR OWN MIDI
 We will assume you know how to create that ``.txt`` file I mentioned above. Create your midi in FL Studio using MIDI out plugins (I'm expecting you to know how MIDI OUTs work in FL Studio. If you don't, search up how to use it.) Each channel maps to a seperate instrument you mapped in the ``.txt`` file you may or may not have created.
 
@@ -82,11 +84,11 @@ Run ``main.py``. That is the main file. Don't run the other ``.py`` file, as it 
 * **FORCE STOP**: If you say "y", this program will insert an 🇽 before every note (excluding times where >=2 notes play at the same time). In other words, it prevents unwanted sustaining. Remember the last time you held that right pedal down playing the piano? This prevents it, but increases the note count.
 * **BPM MULTIPLIER**: You should at least say ``4``, or ``8`` if your song is really fast. Basically, this multiplies the bpm by the number you say. Whatever you say should be a power of 2. Because GDcolon's website is limited, this program automatically quantisizes notes to the nearest beat; the higher the **BPM MULT**, the less quantisizing is done.
 * **BPM_DIV (type 0.5 if you want...)**: Sometimes, this program generates a chart that has a tempo way too high (this is VERY different from BPM multiplier). Type 0.5 if you want the exported chart to have a tempo half of it would be, or 2.0 if you want it double. Think of it like youtube's playback slider - this ONLY affects the tempo that shows up when you import your (moai emoji) file into GDColon's website.
+* **MAXIMUM BEATS** - how long in beats should this song last AFTER BPM multipliers are applied. I suggest 850.
 
 3. Click on the corresponding ``.txt`` file you created (the ``.txt`` file is the file that lets you know what instruments you want each midi channel mapped to... scroll up to see where I explained that). If you don't and just decide to close the filer opener, I'll map channel 1 to ``noteblock_banjo`` and channel 2 to ``mariopaint_car``.
 4. This program will close afterwards and you should see your new .(moai emoji) file in the same directory as the .py or exe file. The file will always be named based off your midi file you opened.
 
 ## NOTES
-* This program limits file length to 850 different notes. Any value above that may crash the site on your end.
 * You can modify my hard coded stuff if you want.
 * I wrote this at 2 in the morning. If there is anything confusing, let me know VIA my twitter DMs.
