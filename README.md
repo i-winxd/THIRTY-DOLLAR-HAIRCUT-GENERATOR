@@ -62,7 +62,7 @@ You can either use the .py files or the exe. The py files are harder to set up
 but if you feel the exe is too sus, you can always use the py files.
 
 ### If you are using the exe file
-Click it to run it. That's it.
+Oh wait. There isn't an exe file.
 
 ### If you are using the .py files
 Okay. Here's how you do it:
