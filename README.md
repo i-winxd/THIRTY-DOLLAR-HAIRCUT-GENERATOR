@@ -71,11 +71,13 @@ Okay. Here's how you do it:
 into your command prompt to get windows 10 to shove the windows 10
 store in your face to get you to install **the latest version of python
 (version 3.10). Don't use version 3.9 (actually, don't, because type annotation
-stuff)
+stuff)**
 2. Install easygui VIA pip. Basically type ``pip install easygui`` in your
 command prompt. Also do the same thing with mido. Type ``pip install mido`` in your command prompt.
 3. Run the .py file using python 3.10 (using right click open with).
 Run ``main.py``. That is the main file. Don't run the other ``.py`` file, as it basically does nothing, but **the other py file must be in the same directory as main.py**.
+
+Note: if you are a serious python user please don't use the Windows 10 store and actually use what you already know
 
 ## How to use this program
 1. Click on the midi file you want to import when prompted. If you don't, the program will stop and shut down.
