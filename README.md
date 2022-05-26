@@ -61,22 +61,17 @@ And use the method in the above image to know what each "FL STUDIO PERCUSSION IN
 If you choose a note that isn't in the dictionary I stated it will just be ignored (the program won't crash).
 
 ## How do I open this?
-You can either use the .py files or the exe. The py files are harder to set up
-but if you feel the exe is too sus, you can always use the py files.
 
-### If you are using the exe file
-Oh wait. There isn't an exe file.
+**PLEASE FOLLOW THIS TUTORIAL. TRY NOT TO DOWNLOAD THE EXE FILE UNLESS YOU ARE WILLING TO TAKE RISKS. DEPENDENCIES ARE BELOW**
 
-### If you are using the .py files
-Okay. Here's how you do it:
+https://gist.github.com/i-winxd/0af33288536c155ac06690d3953156a4
 
-1. Install python.
-2. Install easygui VIA pip. Basically type ``pip install easygui`` in your
-command prompt. Also do the same thing with mido. Type ``pip install mido`` in your command prompt.
-3. Run the .py file using python 3.10 (using right click open with).
-Run ``main.py``. That is the main file. Don't run the other ``.py`` file, as it basically does nothing, but **the other py file must be in the same directory as main.py**.
+Commands for dependencies are
 
-Note: if you are a serious python user please don't use the Windows 10 store and actually use what you already know
+```
+pip install easygui
+pip install mido
+```
 
 ## How to use this program
 1. Click on the midi file you want to import when prompted. If you don't, the program will stop and shut down.
