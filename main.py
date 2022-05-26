@@ -4,10 +4,9 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 # type, note, time, channel, velocity
 import math
-from datetime import time
-
-import easygui
-from typing import Tuple, List, Any
+# from datetime import time
+from tkinter.filedialog import askopenfile
+# from typing import Tuple, List, Any
 
 import midi_data_obtainer as md
 from fractions import Fraction
@@ -43,8 +42,8 @@ def generate_powers_of_2(max_pow: int) -> list[int]:
 
 def psb(text: str) -> bool:
     """Used for inputs: y for yes, F for others.
-    :param text:
-    :return:
+    :param text: TBA
+    :return: TBA
     """
     t = input(f'{text} y (or Y) for yes, otherwise no.')
     if t in {'y', 'Y'}:
@@ -101,8 +100,6 @@ def nnto(pitch: str) -> int:
     """Note name to offset
     Return the note to subtract. For example, if a C is passed and our root note is A, then
     we need to add by C - cur.
-    :param pitch:
-    :return:
     """
     pitch_relative = pitch[:-1]
     octave = int(pitch[-1])
@@ -151,7 +148,7 @@ def channel_to_sample(channel: int, file_str: str) -> list[str, int]:
 
 
 MIDI_PERCS = {
-    35: '🥁', 36: 'undertale_crack', 37: 'sidestick', 38: 'hammer',
+    35: '🥁', 36: '👏', 37: 'sidestick', 38: 'hammer',
     39: '👏', 40: 'noteblock_snare', 41: 'adofaikick', 42: 'cowbell',
     43: '💀', 44: 'tab_rows', 45: 'tonk', 46: 'tab_sounds', 47: 'undertale_hit',
     48: 'undertale_encounter', 49: 'fnf_death', 50: 'yahoo', 51: 'issac_hurt', 52: 'issac_dead',
@@ -184,13 +181,15 @@ def generate_file(midi_data: list, final_bpm: int, f_stop: bool = False, song_le
         - all the notes in midi_data are in chronological order
     """
     # this only runs once. The running time also SUCKS
-    inst_text_dir = easygui.fileopenbox(msg='What INST TXT file would you like to select?', filetypes=["*.txt", '*'], default='*.txt')
+    inst_text_dir = askopenfile(mode='r', title='What txt file would you like to open? Check the README'
+                                                'for more info.',
+                                filetypes=[('txt file', '*.txt')])
     # inst_text_dir = 'freedomdive.txt'
     if inst_text_dir is None:
         print('Did you close the box? We\'ll do defaults for you.')
         file_string = 'noteblock_banjo;F#5\nmariopaint_car;F#5'
     else:
-        file_string = read_file(inst_text_dir)
+        file_string = read_file(inst_text_dir.name.replace("/", "\\"))
     sequence_so_far = [f'!speed@{final_bpm * 2}']
     # prev_note_timing = -1
     for i in range(0, song_length):
@@ -359,14 +358,11 @@ def obtain_beat_number_int(midi_data: list[list[str | float | int | Fraction]], 
     return midi_data_so_far
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    directory_cur = easygui.fileopenbox(msg='What MIDI file would you like to select?',
-                                        filetypes=["*.mid", '*'],
-                                        default='*.mid')
-    print('You selected ' + directory_cur)
+    directory_cur = askopenfile(mode='r', title='What MIDI file would you like to choose?',
+                                filetypes=[('MIDI Files', '*.mid')])
+
     if directory_cur is None:
         print('Did you not select a file?')
-    main(directory_cur)
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    else:
+        main(directory_cur.name.replace("/", "\\"))
