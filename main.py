@@ -8,7 +8,7 @@ import math
 from tkinter.filedialog import askopenfile
 # from typing import Tuple, List, Any
 
-import midi_data_obtainer as md
+from folder_must_be_in_same_directory_as_main_py import midi_data_obtainer as md
 from fractions import Fraction
 
 # import math
