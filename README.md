@@ -48,6 +48,9 @@ Channel 10 is the percussion channel. Take a look at this dictionary to see what
     53: 'minecraft_bell', 54: 'ook', 55: 'gun', 56: 'cowbell', 57: 'mariopaint_dog', 58: 'mariopaint_cat'
 }
 ```
+You can modify this in `main.py`.
+
+
 Okay. What do these numbers mean? Use this website:
 https://usermanuals.finalemusic.com/SongWriter2012Win/Content/PercussionMaps.htm
 
