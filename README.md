@@ -70,11 +70,7 @@ Oh wait. There isn't an exe file.
 ### If you are using the .py files
 Okay. Here's how you do it:
 
-1. Install python. If you're running windows 10, type ``python``
-into your command prompt to get windows 10 to shove the windows 10
-store in your face to get you to install **the latest version of python
-(version 3.10). Don't use version 3.9 (actually, don't, because type annotation
-stuff)**
+1. Install python.
 2. Install easygui VIA pip. Basically type ``pip install easygui`` in your
 command prompt. Also do the same thing with mido. Type ``pip install mido`` in your command prompt.
 3. Run the .py file using python 3.10 (using right click open with).
