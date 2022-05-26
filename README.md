@@ -69,7 +69,6 @@ https://gist.github.com/i-winxd/0af33288536c155ac06690d3953156a4
 Commands for dependencies are
 
 ```
-pip install easygui
 pip install mido
 ```
 
