@@ -37,22 +37,16 @@ stuff in channel 10 differently, so beware.
 
 MIDI out doesn't play sound unless you set stuff up. I would sequence your notes somewhere not in MIDI out, and then copy-paste your notes.
 
-### Channel 10
-Channel 10 is the percussion channel. Take a look at this dictionary to see what each key here maps to:
-```py
-{
-    35: '🥁', 36: 'undertale_crack', 37: 'sidestick', 38: 'hammer',
-    39: '👏', 40: 'noteblock_snare', 41: 'adofaikick', 42: 'cowbell',
-    43: '💀', 44: 'tab_rows', 45: 'tonk', 46: 'tab_sounds', 47: 'undertale_hit',
-    48: 'undertale_encounter', 49: 'fnf_death', 50: 'yahoo', 51: 'issac_hurt', 52: 'issac_dead',
-    53: 'minecraft_bell', 54: 'ook', 55: 'gun', 56: 'cowbell', 57: 'mariopaint_dog', 58: 'mariopaint_cat'
-}
-```
-You can modify this in `main.py`.
+### Percussion
 
+`perc` as an instrument will cause the channel in question to be treated as a percussion channel. This
+completely changes how the MIDI file is interpreted - pitches are now
+treated like indiviual instruments, with each pitch being mapped to
+whatever is in `percussion.txt` (do not rename that file). **Typically, channel 10s are percussion channels (one-based).**
 
-Okay. What do these numbers mean? Use this website:
-https://usermanuals.finalemusic.com/SongWriter2012Win/Content/PercussionMaps.htm
+On MIDI and percussion:
+https://usermanuals.finalemusic.com/SongWriter2012Win/Content/PercussionMaps.htm (you'll see the instrument names when working
+with FL Studio's MIDI out when you set it to channel 10.)
 
 And use the method in the above image to know what each "FL STUDIO PERCUSSION INSTRUMENT" actually is on GD's website.
 
