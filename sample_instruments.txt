@@ -1,0 +1,12 @@
+noteblock_harp;F#5  // this is a comment and will be ignored.
+mariopaint_luigi;F#5
+🎺;F#5
+builttoscale;C5
+mariopaint_swamp;F#5
+noteblock_harp;F#5
+noteblock_bass;F#3
+🦴;D5
+noteblock_bass;F#4
+perc;F#5  // this is perc. perc means percussion.
+noteblock_bit;F#5
+nothing;C5  // all midi notes set to channel 12 will be ignored. This is different from not stating anything.
