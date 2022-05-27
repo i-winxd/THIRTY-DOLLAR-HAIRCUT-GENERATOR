@@ -1,0 +1,89 @@
+DO NOT RENAME THIS FILE
+THE LINE OF THIS FILE REPRESENTS THE MIDI NOTE NUMBER
+WHERE 60 <-> C5.
+On the left side, state a
+thirty dollar haircut
+instrument. The lines
+of this file represent
+the midi note number, so
+it would be really helpful
+to edit this text file in
+an IDE rather than notepad.
+At least one that can visualize
+numbers.
+A reminder that if there's a MIDI
+note that doesn't map to a
+30 dollar haircut sound
+effect here, then
+the midi note will be
+dropped entirely - treated
+as if it never existed in the
+first place.
+Double slashes represent comments.
+Any text to the right of double slashes will be ignored.
+Leading or trailing whitespaces do not matter. Start here.
+Text after // will be treated as a comment. REMEMBER: THE LINE NUMBER OF THE TEXT HERE MATTERS!!!
+What really matters is whether there's a '|' in a line and whether there's an instrument after it.
+Laser (Line 27)    |
+Whip               |
+Scratch push       |
+Scratch  pull      |
+Stick click        |
+Metronome click    |
+Metronome bell     |
+Bass drum          |
+Kick drum          | adofaikick
+Snare cross stick  | adofaikick
+Snare drum         | sidestick
+Hand clap (38)     | hammer
+Electric snare drum| 👏
+Floor tom 2        | noteblock_snare
+Hi hat closed      | adofaikick
+Floor tom 1        | cowbell
+Hi hat foot        | 💀
+Low tom (44)       | tab_rows
+Hi hat open        | tonk
+Low mid tom        | hitmarker
+High mid tom       | undertale_hit
+Crash cymbal       | 🥁
+High tom           | fnf_death
+Ride cymbal        | hammer
+China cymbal       | issac_hurt
+Ride bell          | issac_dead
+Tambourine         | minecraft_bell
+Splash cymbal      | ook
+Cowbell            | gun
+Crash cymbal 2     | cowbell
+Vibraharp          | mariopaint_dog
+Ride cymbal 2      | mariopaint_cat
+High bongo         |
+Low bongo          |
+Conga dead stroke  |
+Conga (62)         |
+Tuba               |
+High timbale       |
+Low timbale        |
+High agogo         |
+Low agogo          |
+Cabasa             |
+Maracas            |
+Whistle Short      |
+Whistle Long       |
+Guiro Short        |
+Guiro long         |
+claves             |
+High woodblock     |
+Low woodblock      |
+Cuica high         |
+Cuica low          |
+Triangle mute      |
+Triangle open      |
+shaker             |
+Sleigh bell        |
+Bell tree          |
+castanets          |
+Surdu dead stroke  |
+Surdu              |
+Snare Drum rod     |
+Ocean Drum         |
+Snare Drum Brush   |
