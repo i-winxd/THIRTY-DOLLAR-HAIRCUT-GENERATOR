@@ -11,17 +11,30 @@ from tkinter.filedialog import askopenfile
 from folder_must_be_in_same_directory_as_main_py import midi_data_obtainer as md
 from fractions import Fraction
 
+
 # import math
 
 MAX_DENOM_POWER = 7  # useless var
 MAX_DENOM = 2 ** MAX_DENOM_POWER  # useless var
 FORCE_STOP = False
-SONG_LENGTH_R = 850
+SONG_LENGTH_R = 600
 PROMPT = True
 
 # well scrap that, predefine our BPM mult
-BPM_MULTI = 8
+BPM_MULTI = 4
 TRANSPOSE = 4
+
+
+def remove_comment(text: str) -> str:
+    """Return a str such that if // in str,
+    remove // and all text after // and strip
+    both sides afterwards.
+    """
+    slash_location = text.find('//')
+    if slash_location == -1:
+        return text
+    else:
+        return text[:slash_location].strip()
 
 
 def generate_powers_of_2(max_pow: int) -> list[int]:
@@ -54,18 +67,20 @@ def psb(text: str) -> bool:
 
 def main(midi_path: str):
     if PROMPT:
-        f_stop = psb('Force stop?')
+        f_stop = psb('Force stop? If so, add "x" after each note that doesn\'t play together.')
         bpm_mult = int(input('BPM multiplier? (e.g. say 2 if your most precise notes are eigth notes, 4 if 16th...)'))
         if not math.isclose(math.log2(bpm_mult) % 1, 0):
             print('DID YOU JUST IMPLEMENT A BPM MULTIPLIER THAT IS NOT AN EXPONENT OF 2???'
                   ' Make sure you know what you are doing. Unless you are dealing with a song with'
                   'a swing tempo, but even then, I cannot guarantee anything.')
-        bpm_div = float(input('Type 0.5 if you want the song to play half as fast, 1 for normal, or 2 for fast'))
-        song_length = int(input('Maximum beats in this song? I suggest 850. This number is div\'d by bpm mult'))
+        bpm_div = float(input('I want to multiply the tempo of this song by a factor of... '
+                              '(high -> plays faster on GDcolon site)'))
+        song_length = int(input('Maximum beats in this song? I suggest 850. This number is div\'d by bpm mult'
+                                '\n avoid too high numbers as that could crash the site.'))
     else:
         f_stop = FORCE_STOP
         bpm_mult = BPM_MULTI
-        bpm_div = 1
+        bpm_div = 0.77
         song_length = SONG_LENGTH_R
 
     spb = md.obtain_spb(midi_path)
@@ -118,11 +133,13 @@ def channel_to_sample(channel: int, file_str: str) -> list[str, int]:
     :param channel: midi channel of the note
     :return: what it corresponds to
     """
-    if not PROMPT:
-        the_list = [
-            ['mariopaint_flower', -6],
-            ['noteblock_bell', -6]
-        ]
+    if False:
+        pass
+    # if not PROMPT:
+    #     the_list = [
+    #         ['mariopaint_flower', -6],
+    #         ['noteblock_bell', -6]
+    #     ]
     else:
         insts = file_str  # read_file('instruments.txt')
         last_ind = insts.find(r'\\')
@@ -133,6 +150,7 @@ def channel_to_sample(channel: int, file_str: str) -> list[str, int]:
         dl = ';'
         the_list = []
         for item in temp_list:
+            item = remove_comment(item)
             split_str = item.split(dl)
             if len(split_str) == 1:
                 offset = 0
@@ -147,13 +165,16 @@ def channel_to_sample(channel: int, file_str: str) -> list[str, int]:
     return sample
 
 
-MIDI_PERCS = {
-    35: '🥁', 36: '👏', 37: 'sidestick', 38: 'hammer',
-    39: '👏', 40: 'noteblock_snare', 41: 'adofaikick', 42: 'cowbell',
-    43: '💀', 44: 'tab_rows', 45: 'tonk', 46: 'tab_sounds', 47: 'undertale_hit',
-    48: 'undertale_encounter', 49: 'fnf_death', 50: 'yahoo', 51: 'issac_hurt', 52: 'issac_dead',
-    53: 'minecraft_bell', 54: 'ook', 55: 'gun', 56: 'cowbell', 57: 'mariopaint_dog', 58: 'mariopaint_cat'
-}
+PERC_FILE_NAME = 'percussion.txt'
+MIDI_PERCS = {}  # read_perc_file('instruments.txt')
+# print(MIDI_PERCS)
+#     {
+#     35: 'adofaikick', 36: 'adofaikick', 37: 'sidestick', 38: 'hammer',
+#     39: '👏', 40: 'noteblock_snare', 41: 'adofaikick', 42: 'cowbell',
+#     43: '💀', 44: 'tab_rows', 45: 'tonk', 46: 'hitmarker', 47: 'undertale_hit',
+#     48: '🥁', 49: 'fnf_death', 50: 'hammer', 51: 'issac_hurt', 52: 'issac_dead',
+#     53: 'minecraft_bell', 54: 'ook', 55: 'gun', 56: 'cowbell', 57: 'mariopaint_dog', 58: 'mariopaint_cat'
+# }
 
 
 MIDI_PERCS_2 = [
@@ -180,6 +201,9 @@ def generate_file(midi_data: list, final_bpm: int, f_stop: bool = False, song_le
     Preconditions:
         - all the notes in midi_data are in chronological order
     """
+
+    midi_percs_info = read_perc_file(PERC_FILE_NAME)
+
     # this only runs once. The running time also SUCKS
     inst_text_dir = askopenfile(mode='r', title='What txt file would you like to open? Check the README'
                                                 'for more info.',
@@ -198,17 +222,28 @@ def generate_file(midi_data: list, final_bpm: int, f_stop: bool = False, song_le
         #                              for x in acceptable_notes]
         formatted_acceptable_notes = []
         for curr_note in acceptable_notes:
-            if curr_note[3] != 9:
-                processed_str = f'{channel_to_sample(curr_note[3], file_string)[0]}' \
-                                f'{generate_pitch_str(channel_to_sample(curr_note[3], file_string)[1] + curr_note[1] - 64 + TRANSPOSE)}'
-                if channel_to_sample(curr_note[3], file_string)[0] != 'nothing':
+            # if curr_note[3] != 9:
+            processed_str = f'{channel_to_sample(curr_note[3], file_string)[0]}' \
+                            f'{generate_pitch_str(channel_to_sample(curr_note[3], file_string)[1] + curr_note[1] - 64 + TRANSPOSE)}'
+            c2s_name = channel_to_sample(curr_note[3], file_string)[0]
+            if c2s_name == 'nothing':
+                continue
+            elif c2s_name.lower() == 'perc':
+                processed_str = midi_percs_info.get(curr_note[1], None)
+                if processed_str is not None:
                     formatted_acceptable_notes.append(processed_str)
-            else:
-                try:
-                    processed_str = MIDI_PERCS[curr_note[1]]
-                    formatted_acceptable_notes.append(processed_str)
-                except KeyError:
-                    pass  # do not pass go; do not collect 200
+            else:  # proceed like normal
+                formatted_acceptable_notes.append(processed_str)
+            # else:
+            #     processed_str = midi_percs_info.get(curr_note[1], None)
+            #     if processed_str is not None:
+            #         formatted_acceptable_notes.append(processed_str)
+                # exceptions are expensive to throw.
+                # try:
+                #     processed_str = midi_percs_info[curr_note[1]]
+                #     formatted_acceptable_notes.append(processed_str)
+                # except KeyError:
+                #     pass  # do not pass go; do not collect 200
         new_fan = []
         cur_iter = 0
         if len(formatted_acceptable_notes) != 0:
@@ -273,6 +308,7 @@ def export(string: str, file_name: str) -> None:
     :param file_name:
     :return:
     """
+    print(f'exporting file {file_name}')
     with open(file_name, 'w', encoding='UTF-8') as f:
         f.write(string)
 
@@ -356,6 +392,24 @@ def obtain_beat_number_int(midi_data: list[list[str | float | int | Fraction]], 
             new_beats = note[2].numerator
         midi_data_so_far.append([note[0], note[1], new_beats, note[3], note[4]])
     return midi_data_so_far
+
+
+def read_perc_file(path_to_file: str) -> dict[int, str]:
+    """Read the percussion file.
+    """
+    file_contents = read_file(path_to_file).split('\n')
+    dict_so_far = {}
+    for i, f_line in enumerate(file_contents):
+        # guard clauses:
+        f_line = remove_comment(f_line)
+        splitted = f_line.split('|')
+        if len(splitted) != 2:
+            continue
+        inst_name = splitted[1].strip()
+        # add only if the instrument name is declared
+        if len(inst_name) != 0:
+            dict_so_far[i + 1] = inst_name
+    return dict_so_far
 
 
 if __name__ == '__main__':
