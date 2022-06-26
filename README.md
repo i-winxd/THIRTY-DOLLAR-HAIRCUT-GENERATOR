@@ -1,4 +1,4 @@
-# DON'T YOU LECTURE ME WITH YOUR THIRTY DOLLAR WEBSITE MIDI GENERATOR
+# DON'T YOU LECTURE ME WITH YOUR THIRTY DOLLAR HAIRCUT WEBSITE MIDI GENERATOR
 Tired of clicking every panel on that site? This program's your solution.
 
 ## How do I open this?
