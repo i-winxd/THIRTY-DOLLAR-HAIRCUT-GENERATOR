@@ -1,6 +1,16 @@
 # DON'T YOU LECTURE ME WITH YOUR THIRTY DOLLAR WEBSITE MIDI GENERATOR
 Tired of clicking every panel on that site? This program's your solution.
 
+## How do I open this?
+
+Download this by going to code > download ZIP. Extract everything to the same folder.
+
+1. Install Python. I have a tutorial here: https://gist.github.com/i-winxd/0af33288536c155ac06690d3953156a4 though all you really need to do is download and install Python 3.10 from the official Python website. If you already have Python installed, you can skip this step. **If you have multiple versions of Python installed, I'm leaving this up to you to resolve for yourself.**
+2. Type `pip install mido` in the command prompt (you may need to restart your computer if you just installed python)
+3. Click on `run30dollar.bat` This runs the application in the command line interface. Note that if you haven't completed the two steps above, the program won't work (clicking on the bat file will literally do nothing). If you're curious what this file does, it just opens command prompt and autoinputs `py main.py`. By the way, you better have your files ready by this point.
+
+
+
 ## Setting up your midi
 
 ### USING A PREEXISTING MIDI
@@ -53,18 +63,6 @@ And use the method in the above image to know what each "FL STUDIO PERCUSSION IN
 ![image](https://user-images.githubusercontent.com/31808925/151503801-1dbdd7a7-830d-4c65-a106-d3b5b08a3072.png)
 
 If you choose a note that isn't in the dictionary I stated it will just be ignored (the program won't crash).
-
-## How do I open this?
-
-**PLEASE FOLLOW THIS TUTORIAL. TRY NOT TO DOWNLOAD THE EXE FILE UNLESS YOU ARE WILLING TO TAKE RISKS. DEPENDENCIES ARE BELOW**
-
-https://gist.github.com/i-winxd/0af33288536c155ac06690d3953156a4
-
-Commands for dependencies are
-
-```
-pip install mido
-```
 
 ## How to use this program
 1. Click on the midi file you want to import when prompted. If you don't, the program will stop and shut down.
