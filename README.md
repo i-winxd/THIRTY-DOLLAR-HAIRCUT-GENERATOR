@@ -1,15 +1,15 @@
 # DON'T YOU LECTURE ME WITH YOUR THIRTY DOLLAR HAIRCUT WEBSITE MIDI GENERATOR
+MIDI -> 30 DOLLAR WEBSITE
+
 Tired of clicking every panel on that site? This program's your solution.
 
 ## How do I open this?
 
 Download this by going to code > download ZIP. Extract everything to the same folder.
 
-1. Install Python. I have a tutorial here: https://gist.github.com/i-winxd/0af33288536c155ac06690d3953156a4 though all you really need to do is download and install Python 3.10 from the official Python website. If you already have Python installed, you can skip this step. **If you have multiple versions of Python installed, I'm leaving this up to you to resolve for yourself.**
+1. Install Python. I have a tutorial here: https://gist.github.com/i-winxd/0af33288536c155ac06690d3953156a4 though all you really need to do is download and install __Python 3.10 (You MUST use this version or higher otherwise the program will break)__ from the official Python website. If you already have Python installed, you can skip this step. **If you have multiple versions of Python installed, I'm leaving this up to you to resolve for yourself.**
 2. Type `pip install mido` in the command prompt (you may need to restart your computer if you just installed python)
 3. Click on `run30dollar.bat` This runs the application in the command line interface. Note that if you haven't completed the two steps above, the program won't work (clicking on the bat file will literally do nothing). If you're curious what this file does, it just opens command prompt and autoinputs `py main.py`. By the way, you better have your files ready by this point.
-
-
 
 ## Setting up your midi
 
