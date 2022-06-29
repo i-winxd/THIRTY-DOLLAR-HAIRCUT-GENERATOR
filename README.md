@@ -44,8 +44,7 @@ If your inst name is ``nothing`` for a channel then that channel will be skipped
 ### CREATING YOUR OWN MIDI
 We will assume you know how to create that ``.txt`` file I mentioned above. Create your midi in FL Studio using MIDI out plugins (I'm expecting you to know how MIDI OUTs work in FL Studio. If you don't, search up how to use it.) Each channel maps to a seperate instrument you mapped in the ``.txt`` file you may or may not have created.
 
-Now, beware about **channel 10.** That's the percussion channel, and you'll know that because FL studio will show percussion stuff on your piano roll. This program handles
-stuff in channel 10 differently, so beware.
+It is up to you to set the instrument to `perc` in channel 10.
 
 MIDI out doesn't play sound unless you set stuff up. I would sequence your notes somewhere not in MIDI out, and then copy-paste your notes.
 
