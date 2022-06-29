@@ -3,6 +3,8 @@ MIDI -> 30 DOLLAR WEBSITE
 
 Tired of clicking every panel on that site? This program's your solution.
 
+**PLEASE CREDIT THIS TOOL IF YOU'RE MAKING ANY VIDEO ON ANY SITE USING THIS TOOL**
+
 ## How do I open this?
 
 Download this by going to code > download ZIP. Extract everything to the same folder.
