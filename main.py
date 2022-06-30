@@ -1,15 +1,7 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-# type, note, time, channel, velocity
-import math
-# from datetime import time
-from tkinter.filedialog import askopenfile
-# from typing import Tuple, List, Any
-
-from folder_must_be_in_same_directory_as_main_py import midi_data_obtainer as md
-from fractions import Fraction
+"""Code by i-win
+(c) i-win 2022
+Please credit me if you're using this code for any purpose!!!
+"""
 
 
 # import math
@@ -213,7 +205,7 @@ def generate_file(midi_data: list, final_bpm: int, f_stop: bool = False, song_le
         print('Did you close the box? We\'ll do defaults for you.')
         file_string = 'noteblock_banjo;F#5\nmariopaint_car;F#5'
     else:
-        file_string = read_file(inst_text_dir.name.replace("/", "\\"))
+        file_string = read_file(inst_text_dir.name)
     sequence_so_far = [f'!speed@{final_bpm * 2}']
     # prev_note_timing = -1
     for i in range(0, song_length):
@@ -309,6 +301,10 @@ def export(string: str, file_name: str) -> None:
     :return:
     """
     print(f'exporting file {file_name}')
+    print("DATA BELOW INCASE THIS FAILS")
+    print(string)
+    print('DATA ENDS HERE')
+
     with open(file_name, 'w', encoding='UTF-8') as f:
         f.write(string)
 
@@ -419,4 +415,4 @@ if __name__ == '__main__':
     if directory_cur is None:
         print('Did you not select a file?')
     else:
-        main(directory_cur.name.replace("/", "\\"))
+        main(directory_cur.name)
