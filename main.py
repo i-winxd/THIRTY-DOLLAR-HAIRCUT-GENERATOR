@@ -87,7 +87,7 @@ def main(midi_path: str):
     final_bpm = round(bpm * BPM_MULTI * bpm_div)
     file_str = generate_file(midi_data_1, final_bpm, f_stop, song_length)
 
-    ei = midi_path.rfind('\\')
+    ei = midi_path.rfind('/')
     if ei != -1:
         export_file_name = midi_path[ei + 1:]
     else:
