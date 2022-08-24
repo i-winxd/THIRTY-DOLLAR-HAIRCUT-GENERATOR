@@ -3,6 +3,14 @@
 Please credit me if you're using this code for any purpose!!!
 """
 
+import math
+# from datetime import time
+from tkinter.filedialog import askopenfile
+# from typing import Tuple, List, Any
+from typing import Union
+
+from folder_must_be_in_same_directory_as_main_py import midi_data_obtainer as md
+from fractions import Fraction
 
 # import math
 
@@ -330,8 +338,8 @@ def generate_pitch_str(num: int) -> str:
         return '@' + str(num)
 
 
-def multiply_beat_number(midi_data: list[list[str | float | int]],
-                         spb: int | float, mult: int) -> list[list[str | float | int]]:
+def multiply_beat_number(midi_data: list[list[Union[str, float, int]]],
+                         spb: Union[int, float], mult: int) -> list[list[Union[str, float, int]]]:
     """Return the same midi data but all the timings are in int format.
     We will also return the highest fraction.
 
@@ -351,8 +359,8 @@ def multiply_beat_number(midi_data: list[list[str | float | int]],
 # GARBAGE BELOW
 
 
-def obtain_beat_number(midi_data: list[list[str | float | int]],
-                       spb: int | float) -> tuple[list[list[str | float | int | Fraction]], int]:
+def obtain_beat_number(midi_data: list[list[Union[str, float, int]]],
+                       spb: Union[int, float]) -> tuple[list[list[Union[str, float, int, Fraction]]], int]:
     """Return the same midi data but all the timings are in fraction format.
     We will also return the highest fraction.
 
@@ -370,7 +378,7 @@ def obtain_beat_number(midi_data: list[list[str | float | int]],
     return new_midi_data_so_far, highest_denom_so_far
 
 
-def obtain_beat_number_int(midi_data: list[list[str | float | int | Fraction]], highest_denom: int):
+def obtain_beat_number_int(midi_data: list[list[Union[str, float, int, Fraction]]], highest_denom: int):
     """Same as the previous function but return the beat count assuming there are nothing more than
     quarter notes.
     :param midi_data:
