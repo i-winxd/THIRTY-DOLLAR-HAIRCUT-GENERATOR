@@ -9,7 +9,7 @@ Tired of clicking every panel on that site? This program's your solution.
 
 Download this by going to code > download ZIP. Extract everything to the same folder.
 
-1. Install Python. I have a tutorial here: https://gist.github.com/i-winxd/0af33288536c155ac06690d3953156a4 though all you really need to do is download and install __Python 3.10 (You MUST use this version or higher otherwise the program will break)__ from the official Python website. If you already have Python installed, you can skip this step. **If you have multiple versions of Python installed, I'm leaving this up to you to resolve for yourself.**
+1. Install Python. I have a tutorial here: https://gist.github.com/i-winxd/0af33288536c155ac06690d3953156a4 though all you really need to do is download and install Python 3.9 or later from the official Python website. If you already have Python installed, you can skip this step. **If you have multiple versions of Python installed, I'm leaving this up to you to resolve for yourself.**
 2. Type `pip install mido` in the command prompt (you may need to restart your computer if you just installed python)
 3. **If you're using windows:** Click on `run30dollar.bat` This runs the application in the command line interface. Note that if you haven't completed the two steps above, the program won't work (clicking on the bat file will literally do nothing). If you're curious what this file does, it just opens command prompt and autoinputs `py main.py`. By the way, you better have your files ready by this point. If you're not using windows, you should just download pycharm and run the program from there.
 
