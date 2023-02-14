@@ -55,15 +55,7 @@ completely changes how the MIDI file is interpreted - pitches are now
 treated like indiviual instruments, with each pitch being mapped to
 whatever is in `percussion.txt` (do not rename that file). **Typically, channel 10s are percussion channels (one-based).**
 
-On MIDI and percussion:
-https://usermanuals.finalemusic.com/SongWriter2012Win/Content/PercussionMaps.htm (you'll see the instrument names when working
-with FL Studio's MIDI out when you set it to channel 10.)
-
-And use the method in the above image to know what each "FL STUDIO PERCUSSION INSTRUMENT" actually is on GD's website.
-
-![image](https://user-images.githubusercontent.com/31808925/151503801-1dbdd7a7-830d-4c65-a106-d3b5b08a3072.png)
-
-If you choose a note that isn't in the dictionary I stated it will just be ignored (the program won't crash).
+See examples for how to use it.
 
 ## How to use this program
 1. Click on the midi file you want to import when prompted. If you don't, the program will stop and shut down.
