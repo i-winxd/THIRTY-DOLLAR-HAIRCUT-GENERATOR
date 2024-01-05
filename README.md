@@ -33,7 +33,7 @@ If you have any time signature changes, **make sure** that they would make sense
 
 Here's an example of the configuration file with annotations. You can specify which `configuration.json` to use when running the program.
 
-```JSON
+```js
 {
     "MAX_DENOMINATOR": 48,  // don't change
     "DEFAULT_INSTRUMENT": "noteblock_harp",
