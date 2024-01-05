@@ -4,7 +4,7 @@ from typing import Any, Callable
 
 
 def my_function(a: int, b: str, c: float = 0.0) -> Any:
-    """I have your address"""
+    """Sample docstring"""
     print(f"a: {a}, b: {b}, c: {c}")
 
 
