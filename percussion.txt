@@ -23,7 +23,7 @@ Double slashes represent comments.
 Any text to the right of double slashes will be ignored.
 Leading or trailing whitespaces do not matter. Start here.
 Text after // will be treated as a comment. REMEMBER: THE LINE NUMBER OF THE TEXT HERE MATTERS!!!
-What really matters is whether there's a '|' in a line and whether there's an instrument after it.
+
 Laser (Line 27)    |
 Whip               |
 Scratch push       |
@@ -59,7 +59,7 @@ Ride cymbal 2      | mariopaint_cat
 High bongo         |
 Low bongo          |
 Conga dead stroke  |
-Conga (62)         |
+Conga              |
 Tuba               |
 High timbale       |
 Low timbale        |

@@ -1,75 +1,133 @@
-# DON'T YOU LECTURE ME WITH YOUR THIRTY DOLLAR HAIRCUT WEBSITE MIDI GENERATOR
-MIDI -> 30 DOLLAR WEBSITE
+# MIDI to Thirty Dollar Website Converter
 
-Tired of clicking every panel on that site? This program's your solution.
+A Thirty Dollar Website MIDI Converter, one for https://thirtydollar.website/ from GDColon.
 
-**PLEASE CREDIT THIS TOOL IF YOU'RE MAKING ANY VIDEO ON ANY SITE USING THIS TOOL**
+## How to set up the MIDI file
 
-## How do I open this?
+We strongly recommend you make your MIDI file in FL Studio. FL Studio has great tools for editing existing MIDI files by simply dragging them in. The Macro "prepare for MIDI export" is pretty useful. Some recent updates in version 21 makes them very easy to edit.
 
-Download this by going to code > download ZIP. Extract everything to the same folder.
+In FL Studio, a single item in the **channel rack** can count as a unique instrument.
 
-1. Install Python. I have a tutorial here: https://gist.github.com/i-winxd/0af33288536c155ac06690d3953156a4 though all you really need to do is download and install Python 3.9 or later from the official Python website (the program may NOT work for older versions). If you already have Python installed, you can skip this step. **If you have multiple versions of Python installed, I'm leaving this up to you to resolve for yourself.**
-2. Type `pip install mido` in the command prompt (you may need to restart your computer if you just installed python)
-3. **If you're using windows:** Click on `run30dollar.bat` This runs the application in the command line interface. Note that if you haven't completed the two steps above, the program won't work (clicking on the bat file will literally do nothing). If you're curious what this file does, it just opens command prompt and autoinputs `py main.py`. By the way, you better have your files ready by this point. If you're not using windows, you should just download pycharm and run the program from there.
+Your MIDI **track names** determines what instrument each track maps to. Here's how your FL Studio should look like:
 
-## Setting up your midi
+![](.thirty_README_images/cc431b95.png)
 
-### USING A PREEXISTING MIDI
-I'm assuming you know a bit about midis. Each midi file
-has different midi channels. The best way to figure them out
-is to drag the file into fl studio, and look at the FL studio midi prompt.
+The syntax should look like this:
 
-![image](https://user-images.githubusercontent.com/31808925/151501848-020489ef-534b-4a35-8209-070f4ca38e86.png)
+- `<INSTRUMENT_NAME>-<ROOT_NOTE>` (the dash `-` is the delimiter)
 
-By the way, count channels from 1 here so no one gets confused. Now, you need to map each channel to an instrument on GDColon's website. Here's how you do it:
+No root note will have it default to C5
 
-1. CREATE A NEW .TXT FILE (ANY NAME)
+- `INSTRUMENT_NAME` - the name of the instrument found in the files that the $30 website exports. If you use inspect element, it uses the `str=` tag.
+- `ROOT_NOTE` - this should be set to the pitch of the sample found on the 30 dollar website without any pitch shifts. How you set this should be very similar to how you would set the root note for any sample you would drag into FL Studio. It should always match this regex: `[A-G][#b]\d` (e.g. `A#4`, `Bb6`, and you should know that `A#5 == Bb5` for the purposes of this program)
 
-2. FORMAT IT LIKE THIS
+## Tempo Changes
 
-![image](https://user-images.githubusercontent.com/31808925/151502169-e619bc55-c6c0-4c7a-aa8c-d1dca17a5b7c.png)
+Tempo changes via automating the tempo (search this up!) in FL Studio should be stored in the MIDI, though I strongly suggest that you have no gradual tempo changes, but rather have your tempo snap instantly. This program will still work if you have gradual tempo changes, but then you're just going to have a bunch of tempo changes crammed in your file. It should still sound the same, despite it being a bit messy.
 
-Definitions:
-* inst name: the name of the instrument as visible in GDColon's website. If you don't know what instrument a sample is, here's how you find it
+## Time signature changes
 
-![image](https://user-images.githubusercontent.com/31808925/151502407-0fcef460-dc00-4978-9b64-48ca56b6d4c4.png)
+If you have any time signature changes, **make sure** that they would make sense when written to sheet music. Never have a 4/4 bar actually last 3 bars long. I might fix this in the future. I rarely expect people to need to use this, so it isn't really supported.
 
-(Open inspect element on a website by pressing F12)
-* inst root note: the pitch of the sample when you right click it on the website. For example, ``noteblock_harp``'s root note is ``F#5``. And you must type it like that, exactly how it appears in FL Studio. ``C5`` is the middle C. We accept stuff like ``C#5, Db5, Ab4, G#4``, etc. The number at the end denotes the octave. We recommend you have perfect pitch to make this easy for you. If you don't have perfect pitch, consider searching up an online piano so you can compare pitches.
-* semicolon: the character that splits the inst name and the inst root note.
+## The Config File
 
-If your inst name is ``nothing`` for a channel then that channel will be skipped.
+Here's an example of the configuration file with annotations. You can specify which `configuration.json` to use when running the program.
 
-### CREATING YOUR OWN MIDI
-We will assume you know how to create that ``.txt`` file I mentioned above. Create your midi in FL Studio using MIDI out plugins (I'm expecting you to know how MIDI OUTs work in FL Studio. If you don't, search up how to use it.) Each channel maps to a seperate instrument you mapped in the ``.txt`` file you may or may not have created.
+```JSON
+{
+    "MAX_DENOMINATOR": 48,  // don't change
+    "DEFAULT_INSTRUMENT": "noteblock_harp",
+    "SAMPLE_MAPPINGS": {},  // don't change
+    // adds pitches to all "empty" notes so you can see what
+    // empty notes are made by this program and what
+    // empty notes are on the site due to an instrument
+    // not existing
+    "DEBUG_MODE": false,
+    "DEBUG_CONFIG": {
+        "no_pause_truncation": true  // not relevant
+    },
+    "CONFIG": {
+        // have MIDI note velocity impact 30$ site note velocity
+        "velocity": false,  
+        // path to the percussion file
+        "percussion_file": "percussion.txt",  
+        // ANY track with any of these names will be treated as 
+        // a "percussion channel" (similar to channel 10 of MIDIs),
+        // with each note mapping to what was declared in 
+        // the percussion file
+        "percussion_keywords": ["perc", "percussion", "drum", "drums", "percs"], 
+        // find and replace will run on every "INSTRUMENT_NAME" 
+        // during conversions; use this for last minute changes
+        // or compatability needs
+        "find_and_replace": false  
+    },
+    "FIND_AND_REPLACE": [
+        // self-explainatory
+        {"find": "kick", "replace": "🥁"},
+        {"find": "dimrainsynth", "replace": "mariopaint_flower"}
+    ]
+}
+```
 
-It is up to you to set the instrument to `perc` in channel 10.
+## Installation and Setup
 
-MIDI out doesn't play sound unless you set stuff up. I would sequence your notes somewhere not in MIDI out, and then copy-paste your notes.
+Make sure you have Python 3.7 or later installed; I strongly recommend getting the latest one. You have it installed if you can type `python` in the command prompt and have the console show up (on MacOS and Linux, you may need to use `python3` instead).
 
-### Percussion
+`cd` to this folder, and run `python -m pip install -r requirements.txt`.
 
-`perc` as an instrument will cause the channel in question to be treated as a percussion channel. This
-completely changes how the MIDI file is interpreted - pitches are now
-treated like indiviual instruments, with each pitch being mapped to
-whatever is in `percussion.txt` (do not rename that file). **Typically, channel 10s are percussion channels (one-based).**
+Then, you can run the program by running this in your command line:
 
-See examples for how to use it.
+```
+python thirtyconv.py [-h] [--config CONFIG] [--bars_per_file BARS_PER_FILE] path_to_midi output_file_name
+```
 
-## How to use this program
-1. Click on the midi file you want to import when prompted. If you don't, the program will stop and shut down.
-2. Answer the prompts the program gives you.
+Let's break the arguments down:
 
-* **FORCE STOP**: If you say "y", this program will insert an 🇽 before every note (excluding times where >=2 notes play at the same time). In other words, it prevents unwanted sustaining. Remember the last time you held that right pedal down playing the piano? This prevents it, but increases the note count.
-* **BPM MULTIPLIER**: You should at least say ``4``, or ``8`` if your song is really fast. Basically, this multiplies the bpm by the number you say. Whatever you say should be a power of 2. Because GDcolon's website is limited, this program automatically quantisizes notes to the nearest beat; the higher the **BPM MULT**, the less quantisizing is done.
-* **BPM_DIV (type 0.5 if you want...)**: Sometimes, this program generates a chart that has a tempo way too high (this is VERY different from BPM multiplier). Type 0.5 if you want the exported chart to have a tempo half of it would be, or 2.0 if you want it double. Think of it like youtube's playback slider - this ONLY affects the tempo that shows up when you import your (moai emoji) file into GDColon's website.
-* **MAXIMUM BEATS** - how long in beats should this song last AFTER BPM multipliers are applied. I suggest 850.
+- **Path to MIDI File:**
+  - The path to the MIDI file you want to convert.
 
-3. Click on the corresponding ``.txt`` file you created (the ``.txt`` file is the file that lets you know what instruments you want each midi channel mapped to... scroll up to see where I explained that). If you don't and just decide to close the filer opener, I'll map channel 1 to ``noteblock_banjo`` and channel 2 to ``mariopaint_car``.
-4. This program will close afterwards and you should see your new .(moai emoji) file in the same directory as the .py or exe file. The file will always be named based off your midi file you opened.
+- **Output File Name:**
+  - The file name of the $30 website file that you want this program to export.
 
-## NOTES
-* You can modify my hard coded stuff if you want.
-* I wrote this at 2 in the morning. If there is anything confusing, let me know VIA my twitter DMs.
-* If your MIDI isn't tailored for this site it will likely sound terrible (note because the timing is wrong, because the midi was likely not meant for that).
+- **Configuration Settings:**
+  - Configuration settings. Check the README for an explanation of each field.
+  - Default: `configuration.json`
+
+- **Bars per File:**
+  - Leave blank if you want all in a single file. 
+  - Otherwise, this program will split up your exported files into chunks to avoid crashing the $30 website when you load them in.
+  - Default: Single file; any value below 10 will be set to 10
+
+Here are some sample usages:
+
+Converts `input.mid` to `output.txt` ($30)
+
+```
+python thirtyconv.py input.mid output.txt
+```
+
+Converts `input.mid` to `output.txt` ($30) with a custom configuration file
+
+```
+python thirtyconv.py --config custom.json input.mid output.txt
+```
+
+Converts `input.mid` to `output.txt` ($30) with a custom configuration file split into 50-bar segments
+
+```
+python thirtyconv.py --bars_per_file 50 --config custom.json input.mid output.txt
+```
+
+## The Thirty Dollar Website is too slow! What do I do?
+
+Use an instance of the thirty dollar rewrite, such as this for now. Note that some instrument names are changed, hence why some settings here exist:
+
+https://kleeder.de/files/moai2/%F0%9F%97%BF.html
+
+No really, there is a memory leak with the animations on the original site. Until that gets fixed, this is your only solution.
+
+Did you know that you can put custom sounds in that site?
+
+- https://github.com/i-winxd/thirty-dollar-custom-fork
+- https://github.com/i-winxd/thirty-dollar-custom-sounds-maker
+

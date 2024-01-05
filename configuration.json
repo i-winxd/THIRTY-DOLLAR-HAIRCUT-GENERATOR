@@ -1,0 +1,19 @@
+{
+    "MAX_DENOMINATOR": 48,
+    "DEFAULT_INSTRUMENT": "noteblock_harp",
+    "SAMPLE_MAPPINGS": {},
+    "DEBUG_MODE": false,
+    "DEBUG_CONFIG": {
+        "no_pause_truncation": true
+    },
+    "CONFIG": {
+        "velocity": false,
+        "percussion_file": "percussion.txt",
+        "percussion_keywords": ["perc", "percussion", "drum", "drums", "percs"],
+        "find_and_replace": false
+    },
+    "FIND_AND_REPLACE": [
+        {"find": "kick", "replace": "🥁"},
+        {"find": "dimrainsynth", "replace": "mariopaint_flower"}
+    ]
+}
